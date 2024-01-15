@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript DOM AddEventListener</title>
+</head>
+
+<style>
+    
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        background-image: url("backg.jpg");
+        background-repeat: no-repeat;
+        background-size: auto; 
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        
+      
+       
+    }
+    
+    *{
+        margin: 0;
+        padding: 0;
+    }
+
+    .parent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+    }
+    
+    .container {
+        width: 500px;
+        height: 200px;
+        background-color: rgba(124, 122, 223, 0.6);
+        border-radius: 20px;
+        justify-content: center;
+        padding: 100px;
+        
+    }
+
+    button {
+        background-color: rgb(115, 233, 100);
+        border-style: 5px;
+        border-radius: 4px;
+        margin: 10px;
+        height: 30px;
+        width: 100px;
+        cursor:pointer;
+        z-index: 0;
+    }
+
+    button::after {
+        content: "";
+        z-index: -1;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #333;
+        left: 0;
+        top: 0;
+        border-radius: 10px;
+    }
+    /* glow */
+button::before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #FF0000, #FF7300, #FFFB00, #48FF00,
+    #00FFD5, #002BFF, #FF00C8, #FF0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 600%;
+  z-index: -1;
+  width: calc(100% + 4px);
+  height:  calc(100% + 4px);
+  filter: blur(8px);
+  animation: glowing 20s linear infinite;
+  transition: opacity .3s ease-in-out;
+  border-radius: 10px;
+  opacity: 0;
+}
+
+@keyframes glowing {
+  0% {background-position: 0 0;}
+  50% {background-position: 400% 0;}
+  100% {background-position: 0 0;}
+}
+
+/* hover */
+button:hover::before {
+  opacity: 1;
+}
+
+button:active:after {
+  background: transparent;
+}
+
+button:active {
+  color: #000;
+  font-weight: bold;
+}
+
+</style>
+
+<body>
+
+    <div class ="parent">
+        
+        <div class="container">
+
+            <h1>JavaScript addEventListener() Hands on</h1>
+            <div class="box">
+                <button id="btn1">Click here!</button>
+                <button id="btn2">Click here!</button>
+                <button id="btn3">Click here!</button>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function btn1() {
+            alert("button 1 has been clicked!");
+        }
+
+        function btn2() {
+            alert("button 2 has been clicked!");
+        }
+
+        function btn3() {
+            alert("button 3 has been clicked!");
+        }
+
+        document.getElementById("btn1").addEventListener("click", btn1);
+        document.getElementById("btn2").addEventListener("click", btn2);
+        document.getElementById("btn3").addEventListener("click", btn3);
+    </script>
+    
+</body>
+</html>
